@@ -1,0 +1,66 @@
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: darkgray;
+}
+
+.nav-image {
+   width: 200px;
+   height: auto;
+}
+
+nav {
+    height: 90px;
+    background-color:black;
+}
+
+.topnav {
+    position: absolute;
+}
+
+.side-nav-link:hover {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-item {
+    text-transform: uppercase;
+}
+
+.nav-bar .icon {
+    display: none;
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+.card {
+    margin: 5px;
+    background-color: lightgrey;
+}
+
+.card img {
+    padding-top: 10px;
+}
+
+.list-details {
+    list-style: none;
+    color: rgb(118, 54, 6);
+    padding-left: 0;
+}
+
+

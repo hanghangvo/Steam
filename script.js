@@ -1,10 +1,47 @@
 const Base_URL = "https://steam-api-dot-cs-platform-306304.et.r.appspot.com/"
 let selectedGenre = ""
 let selectedGame = ""
+let page = 1;
+let limit = 12
+
+function onGameClick(gameName) {
+    selectedGame = gameName;
+    renderFeatures();
+}
+
+function onGenreClick(genreName) {
+    selectedGenre = genreName;
+    renderGames() // re-render game list
+}
+
+function onPageClick(selectedPage) {
+    page = selectedPage;
+    renderGames();
+}
+
+const prePage = () => {
+    if (page <= 1) {
+        return
+    } page -= 1;
+    renderGames();
+}
+
+const nextPage = () => {
+    page += 1;
+    renderGames();
+}
+
+document.querySelector(".btn-search")
+        .addEventListener("click", () => {
+            const value = document.querySelector(".input-search").value;
+            renderGames(value);
+        });
+
+
 
 const getAllGames = async (search, genres) => {
     try {
-        let url = `${Base_URL}games?`;
+        let url = `${Base_URL}games?page=${page}&limit=${limit}&`;
         if (search) {
             url += `q=${search}`;
         }
@@ -29,11 +66,10 @@ const renderGames = async (search, genres) => {
                             )
                             .map((game) => {
                                 return  `
-                                <div class="card col-lg-3 col-md-5 col-12">
+                                <div class="card col-lg-3 col-md-5 col-12" onClick="onGameClick('${game.name}')">
                                     <img src="${game.header_image}" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">${game.name}</h5>
-                                        <a href="#" class="btn btn-secondary" onClick="onGameClick('${game.name}')">More details</a>
                                     </div>
                                 </div>
                             `
@@ -43,11 +79,6 @@ const renderGames = async (search, genres) => {
     }
 }
 renderGames();
-
-function onGameClick(gameName) {
-    selectedGame = gameName;
-    renderFeatures();
-}
 
 const getFeatures = async () => {
     try {
@@ -65,7 +96,6 @@ const renderFeatures = async () => {
             const data = await getFeatures();
             const listCard = document.querySelector(".list-card");
             const x = data.data.find((feature) => feature.name === selectedGame);
-            console.log(x);
             listCard.innerHTML =
             `<div class="card" style="width: 18rem;">
                 <img src="${x.header_image}" class="card-img-top" alt="...">
@@ -87,7 +117,7 @@ const renderFeatures = async () => {
 
 const getGenres = async () => {
     try {
-        const url = `${Base_URL}genres`;
+        const url = `${Base_URL}genres?page=${page}&limit=${limit}`;
         const response = await fetch(url);
         const data = await response.json();
         return data;
@@ -108,16 +138,7 @@ const renderGenres = async () => {
 }
 renderGenres();
 
-function onGenreClick(genreName) {
-    selectedGenre = genreName;
-    renderGames() // re-render game list
-}
 
-document.querySelector(".btn-search")
-        .addEventListener("click", () => {
-            const value = document.querySelector(".input-search").value;
-            renderGames(value);
-        });
 
 
 

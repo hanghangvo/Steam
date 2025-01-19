@@ -14,7 +14,7 @@ body {
    height: auto;
 }
 
-nav {
+.navbar {
     height: 90px;
     background-color:black;
 }
@@ -51,6 +51,10 @@ nav {
 .card {
     margin: 5px;
     background-color: lightgrey;
+}
+
+.card:hover {
+    background-color: #c0c1c2;
 }
 
 .card img {

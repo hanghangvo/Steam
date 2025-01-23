@@ -1,9 +1,12 @@
-## Steam App
-This is my final project of fundamental Javascript module in my Bootcamp by Coderschool. 
+## :video_game:Steam App
+It is a copy of Steam Website made with provided API from my Bootcamp.
 
-It is a copy of Steam Website made with provided API from Coderschool. 
+![Steam Image](images/Steam1.JPG)
 
-## How to run
+
+## :running: How to run
 `git clone https://github.com/hanghangvo/Steam.git`
 
 open `index.html` in your favorite browser
+
+
